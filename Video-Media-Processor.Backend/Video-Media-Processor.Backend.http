@@ -1,6 +1,0 @@
-@Video_Media_Processor.Backend_HostAddress = http://localhost:5075
-
-GET {{Video_Media_Processor.Backend_HostAddress}}/weatherforecast/
-Accept: application/json
-
-###
