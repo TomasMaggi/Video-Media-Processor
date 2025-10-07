@@ -34,7 +34,7 @@ try {
     }
 }
 catch {
-    $_.Exception.Message | Out-File "$originalPath\ef_errors.log" -Append
+    $_.Exception.Message | Out-File "$originalPath\Video-Media-Processor.BuildLogs\ef_errors.log" -Append
 }
 finally {
     # Return to original path
