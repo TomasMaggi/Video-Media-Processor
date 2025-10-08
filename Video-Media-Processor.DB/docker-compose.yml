@@ -1,5 +1,3 @@
-version: '3.8'
-
 services:
   postgres:
     image: postgres:15
@@ -12,10 +10,25 @@ services:
       - "5432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
-      # - ./init-scripts:/docker-entrypoint-initdb.d
     networks:
       - postgres-network
-
+    
+  migrator:
+    image: postgres:15
+    depends_on:
+      - postgres
+    volumes:
+      - ./evolution:/migrations
+      - ./init-scripts/init-db.sh:/init-db.sh
+    command: ["bash", "/init-db.sh"]  # Use bash directly
+    environment:
+      PGHOST: postgres
+      PGDATABASE: Video-Media-Processor.DB.Development
+      PGUSER: postgres
+      PGPASSWORD: postgres123
+    networks:
+      - postgres-network
+    
 volumes:
   postgres_data:
 
