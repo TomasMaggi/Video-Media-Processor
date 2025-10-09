@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Video_Media_Processor.Backend.Data;
+using Video_Media_Processor.Backend.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,6 +11,8 @@ builder.Services.AddOpenApi();
 
 builder.Services.AddDbContext<ApiDataContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+builder.Services.AddScoped<IUploadService, UploadService>();
 
 var app = builder.Build();
 
