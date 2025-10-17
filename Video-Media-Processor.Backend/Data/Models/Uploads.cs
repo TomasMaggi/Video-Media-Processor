@@ -6,5 +6,6 @@
         public string FilePath { get; set; }
         public UploadStatus Status { get; set; }
         public string Uuid { get; set; }
+        public string Queries { get; set; }
     }
 }
