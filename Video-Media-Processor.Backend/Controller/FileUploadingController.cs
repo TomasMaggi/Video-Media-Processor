@@ -26,7 +26,7 @@ namespace Video_Media_Processor.Backend.Controller
             if (request.queries == null || !request.queries.Any())
                 return BadRequest("No queries provided");
 
-            var res = _uploadService.HandleUpload(request);
+            var res = await _uploadService.HandleUpload(request);
 
             return Ok(res);
         }

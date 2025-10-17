@@ -35,16 +35,9 @@ namespace Video_Media_Processor.Backend.Services
             // init new upload
             var upload = new Uploads();
             upload.Uuid = Guid.NewGuid().ToString();
-
-            //upload.Status = await (
-            //    from pendingStatusModel in _context.UploadStatus
-            //    where pendingStatusModel.Strategy == "pending"
-            //    select pendingStatusModel).FirstAsync();
-
-            var pendingStatus = _context.UploadStatus
-                                    .First(u => u.Strategy == "pending");
-
             upload.FilePath = filePath;
+            upload.Status = _context.UploadStatus
+                                    .First(u => u.Strategy == "pending");
 
             var options = new JsonSerializerOptions { WriteIndented = true };
             upload.Queries = JsonSerializer.Serialize(uploadRequest.queries.ToList(), options);
